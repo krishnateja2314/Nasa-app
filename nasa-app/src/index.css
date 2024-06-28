@@ -129,7 +129,12 @@ footer h1 {
     cursor: pointer;
     transition-duration: 200ms;
     margin-right: auto;
-    padding: 1rem;
+    padding: 1rem 0;
+}
+
+.sidebarContants h2 {
+    font-size: 1.4rem;
+    font-weight: 100;
 }
 
 .sidebarContants button:hover {
@@ -137,7 +142,43 @@ footer h1 {
 
 }
 
-@media (min-width: 640px) {
+.discriptionTitle {
+    padding-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 200;
+}
+
+.discriptionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.loadingState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.loadingState i {
+    opacity: 0.2;
+    font-size: 5rem;
+    animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (min-width: 850px) {
     .sidebar {
         position: relative;
         inset: unset;

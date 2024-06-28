@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import SideBar from './components/SideBar';
 function App() {
   const [showModal, setShowModal] = useState(false)
-
+  const [data, setData] = useState(null)
 
   function handleTouggleModel() {
     setShowModal(!showModal)
@@ -13,12 +13,24 @@ function App() {
   useEffect(() => {
     async function fetchAPIData() {
       const NASA_KEY = import.meta.env.VITE_NASA_API_KEY
-      console.log(NASA_KEY)
-      const url = `https://api.nasa.gov/planetary/apod?api_key=?${NASA_KEY}`
+      const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`
+
+      const today = (new Date()).toDateString()
+      const localkey = `NASA-${today}`
+      if (localStorage.getItem(localkey)) {
+        const apiData = JSON.parse(localStorage.getItem(localkey))
+        setData(apiData)
+        console.log('fetched from cache today')
+        return
+      }
+      localStorage.clear()
+
       try {
         const res = await fetch(url)
-        const data = await res.json()
-        console.log(data)
+        const apidata = await res.json()
+        localStorage.setItem(localkey, JSON.stringify(apidata))
+        console.log('fetched from api today')
+        setData(apidata)
       } catch (err) {
         console.log(err.message)
       }
@@ -28,9 +40,13 @@ function App() {
   }, [])
   return (
     <>
-      <Main />
-      {(showModal && <SideBar handleTouggleModel={handleTouggleModel} />)}
-      <Footer handleTouggleModel={handleTouggleModel} />
+      {data ? (<Main data={data} />) : (
+        <div className='loadingState'>
+          <i className="fa-solid fa-gear"></i>
+        </div>
+      )}
+      {(showModal && <SideBar data={data} handleTouggleModel={handleTouggleModel} />)}
+      {data && <Footer showModal={showModal} data={data} handleTouggleModel={handleTouggleModel} />}
     </>
   )
 }
