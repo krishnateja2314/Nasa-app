@@ -1,0 +1,151 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color: white;
+    background-color: #030615;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    display: relative;
+}
+
+.Backgroundimg {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    object-fit: cover;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+footer button {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+footer button i {
+    font-size: 1.3rem;
+}
+
+footer button:hover {
+    opacity: 0.7;
+    transition-duration: 200ms;
+}
+
+footer div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer h2 {
+    font-size: 1.4rem;
+}
+
+footer h1 {
+    font-size: 0.9rem;
+    font-weight: 200;
+}
+
+.bgGradent {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, #030615, rgba(255, 255, 255, 0));
+}
+
+.sidebar {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 12;
+}
+
+.bgOverlay {
+    position: absolute;
+    inset: 0;
+    background: #030615;
+    opacity: 0.6;
+}
+
+.sidebarContants {
+    z-index: 20;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-y: auto;
+    height: 100%;
+    width: 90%;
+    max-width: 800px;
+    margin-left: auto;
+    background: #030615;
+}
+
+.sidebarContants div {
+    flex: 1;
+}
+
+.sidebarContants button {
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    z-index: 10;
+    cursor: pointer;
+    transition-duration: 200ms;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.sidebarContants button:hover {
+    opacity: 0.7;
+
+}
+
+@media (min-width: 640px) {
+    .sidebar {
+        position: relative;
+        inset: unset;
+        min-width: 30%;
+        box-shadow: 0 0 10px 10px 1px #030615;
+    }
+
+    .sidebarContants {
+        margin: unset;
+    }
+}
